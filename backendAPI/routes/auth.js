@@ -21,6 +21,9 @@ router.post(
     }),
   ],
   async (req, res) => {
+
+    let success = false
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -35,9 +38,10 @@ router.post(
     try {
       let newUser = await Cuser.findOne({ email: req.body.email });
       if (newUser) {
+        success = false
         return res
           .status(400)
-          .json({ errors: "Sorry a user with this email already exists." });
+          .json({ success, errors: "Sorry a user with this email already exists." });
       }
 
       //creating hash
@@ -64,7 +68,8 @@ router.post(
         }
       }
       const authToken = jwt.sign(data, jwtSecret)
-      res.json({authToken});
+      success = true
+      res.json({success, authToken});
 
 
     } catch (errors) {
@@ -100,14 +105,15 @@ router.post('/login', [
 
     if(!findUserEmail){
       success = false
-      return res.status(400).json({error: 'Please try to login with correct credentials'})
+      return res.status(400).json({success, error: 'Please try to login with correct credentials'})
     }
 
     //if email exists then compare provided password with the database password of user findUserEmail
     const comparePassword = bcrypt.compareSync(password, findUserEmail.password)
 
     if(!comparePassword){
-      return res.status(400).json({error: 'Please try login with the correct credentials'})
+      success = false
+      return res.status(400).json({success, error: 'Please try login with the correct credentials'})
     }
 
     //if password is matched then return the user authToken
@@ -121,7 +127,7 @@ router.post('/login', [
     //create authToken
     const authToken = jwt.sign(data, jwtSecret)  //jwt.sign is sync function so no need of await before the fucntion
     success = true
-    res.json({authToken})
+    res.json({success, authToken})
 
   }//send errors for server issue
   catch(errors){

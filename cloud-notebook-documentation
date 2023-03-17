@@ -1,0 +1,21 @@
+1.Run servers concurrently
+
+step 1:
+    First add concurrently package
+    Syntax:
+    npm: npm i concurrently, Globally - npm i -g concurrently, development(local) - npm i concurrently -D
+
+    yarn: global - yarn global add concurrently, local - yarn add concurrently -D
+
+step 2:
+    add commands in scripts section of package.json
+
+    "scripts": {
+        "both": "concurrently \"npm run start\" \"nodemon db.connect.js\" " 
+    }
+
+    Note: Remember to surround separate commands with quotes and provide escape quotes.
+    Note: The concurrently command is now also available under the shorthand alias "conc".
+    Note: The tool is written in Node.js, but you can use it to run any commands.
+
+

@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 
 export default function Contact() {
+  //initial values
   const initialValues = {
     userName: "",
     emailAddress: "",
     textInfo: "",
   };
 
+  //initial form state and users state
   const [form, setFrom] = useState(initialValues);
   const [users, setUsers] = useState([]);
 
+  //handle form inputs on change
   function handleFormInputs(e) {
     setFrom({
       ...form,
@@ -17,15 +20,15 @@ export default function Contact() {
     });
   }
 
+  //handle form on clear
   function handleFormClear(e) {
     setFrom(initialValues);
-    e.target.userName = "";
-    e.target.emailAddress = "";
-    e.target.textInfo = "";
   }
 
+  //handle form submit and api calling
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    //API Call
     const response = await fetch("http://localhost:3001/postdata", {
       method: "POST",
       body: JSON.stringify(form),
@@ -37,34 +40,48 @@ export default function Contact() {
     setUsers(users.concat(data));
     setFrom(initialValues);
     // e.target.reset()
-    // console.log("Response From Server",data)
-    // console.log("From Data",form)
   };
 
   const getData = async () => {
-    const response = await fetch("http://localhost:3001/userdata", {
-      method: "GET",
-    });
-    const data = await response.json();
-    setUsers(data);
-    // console.log(data)
+    try {
+      const response = await fetch("http://localhost:5000/userdata", {
+        method: "GET",
+      });
+      const data = await response.json();
+      setUsers(data);
+    } catch (error) {
+      alert(error.message)
+    }
   };
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line
   }, []);
 
   return (
     <div>
       <div className="container my-3">
+        <div className="align-items-center">
+          <strong>
+            <h1 className="fontPrimaryColor fontSize30 marginbottom">
+              Conact Us Form
+            </h1>
+          </strong>
+        </div>
         <form onSubmit={handleFormSubmit}>
           <div className="form-group">
-            <label htmlFor="exampleFormControlInput1">User Name</label>
+            <label
+              className="fontPrimaryColor fontSize20"
+              htmlFor="exampleFormControlInput1"
+            >
+              User Name
+            </label>
             <input
               type="text"
               className="form-control"
               id="exampleFormControlInput1"
-              placeholder="Enter Your Name"
+              placeholder="Mohsin Raza"
               name="userName"
               value={form.userName}
               onChange={handleFormInputs}
@@ -72,12 +89,17 @@ export default function Contact() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="exampleFormControlInput2">Email address</label>
+            <label
+              className="fontPrimaryColor fontSize20"
+              htmlFor="exampleFormControlInput2"
+            >
+              Email address
+            </label>
             <input
               type="email"
               className="form-control"
               id="exampleFormControlInput2"
-              placeholder="name@example.com"
+              placeholder="mohsin.tech101@example.com"
               name="emailAddress"
               value={form.emailAddress}
               onChange={handleFormInputs}
@@ -85,14 +107,17 @@ export default function Contact() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">
+            <label
+              className="fontPrimaryColor fontSize20"
+              htmlFor="exampleFormControlTextarea1"
+            >
               Example textarea
             </label>
             <textarea
               className="form-control"
               id="exampleFormControlTextarea1"
               rows="3"
-              placeholder="Enter Your Text Here"
+              placeholder="My name is Mohsin Raza."
               name="textInfo"
               value={form.textInfo}
               onChange={handleFormInputs}
@@ -111,17 +136,14 @@ export default function Contact() {
           </button>
         </form>
       </div>
-      {/* <div className="container my-3">{JSON.stringify(form)}</div> */}
       <div className="container my-3">
-        {/* <ol>
-          {users.map((user) => (
-            <li key={user._id}>
-              {user.username}, {user.useremail}
-            </li>
-          ))}
-        </ol> */}
         <hr />
-        <table class="table table-hover">
+        <strong>
+          <h1 className="fontPrimaryColor fontSize30 margintop">
+            #Conact Information
+          </h1>
+        </strong>
+        <table className="table table-hover">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -140,6 +162,7 @@ export default function Contact() {
           </tbody>
         </table>
       </div>
+      {/* <div className="container my-3">{JSON.stringify(form)}</div> */}
     </div>
   );
 }

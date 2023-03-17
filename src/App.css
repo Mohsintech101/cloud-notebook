@@ -36,3 +36,98 @@
     transform: rotate(360deg);
   }
 }
+
+p.card-text {
+  margin-top: 6px !important;
+}
+
+i {
+  cursor: pointer;
+}
+
+i.fa-solid.fa-pen-to-square.mx-1 {
+  color: green;
+}
+
+i.fa-solid.fa-trash.mx-1 {
+  color: red;
+}
+
+/* Modal Cross Closing */
+button.chakra-modal__close-btn.css-1ik4h6n {
+  color: red;
+}
+
+a.nav-link.\/.\=\=\=.\'\/\'.\?.\'active\'.\:.\'\' {
+  color: #0a406a;
+}
+
+a.nav-link.\/contactus.\=\=\=.\'\/contactus\'.\?.\'active\'.\:.\'\' {
+  color: #0a406a;
+}
+
+a.nav-link.\/about.\=\=\=.\'\/about\'.\?.\'active\'.\:.\'\' {
+  color: #0a406a;
+}
+/* .fontbtn {
+    align-self: flex-start;
+} */
+
+.fontPrimaryColor {
+  color: #0a406a;
+}
+
+.fontSecondaryColor {
+  color: green;
+}
+
+.fontTertiaryColor {
+  color: #ff8300;
+}
+
+.tagColor {
+  color: #ff8300;
+}
+
+.cardDescriptionColor {
+  color: #54565a;
+}
+
+.primary-navbar-brand {
+  color: #0a406a !important;
+}
+
+.fontSize10 {
+  font-size: 10px;
+}
+
+.fontSize20 {
+  font-size: 20px;
+}
+.fontSize30 {
+  font-size: 30px;
+}
+
+.fontSize40 {
+  font-size: 40px;
+}
+
+.fontSize50 {
+  font-size: 50px;
+}
+
+.ifontSize30 {
+  font-size: 30px !important;
+}
+
+.btnright {
+  margin-inline-start: auto;
+}
+
+.margintop {
+  margin-top: 50px;
+}
+
+.marginbottom {
+  margin-bottom: 30px;
+}

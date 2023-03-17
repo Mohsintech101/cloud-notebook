@@ -1,8 +1,21 @@
-import React from "react";
+// import React, { useContext, useEffect } from "react";
+// import NoteContext from "../context/notes/NoteCotext";
 
 export default function About() {
+
+  /* const context = useContext(NoteContext)
+  const { name, Current_Address } = context.state
+ 
+  useEffect(() => {
+    context.updateState()
+    // eslint-disable-next-line
+  },[]) */
+
   return (
     <div>
+      {/* <div className="container my-3">
+          My name is {name} and I am from {Current_Address}
+      </div> */}
       <div className="container my-3">
         <p>
           How it works Here’s what you need to know before getting started with

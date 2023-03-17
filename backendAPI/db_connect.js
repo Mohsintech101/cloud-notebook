@@ -6,6 +6,8 @@ const bodyParser = require('body-parser')
 
 const mongoURI = process.env.REACT_APP_DB_URI
 
+const port = 5000
+
 main().catch(err => console.log(err));
 async function main() {
   await mongoose.connect(mongoURI, { useNewUrlParser: true });
@@ -56,8 +58,8 @@ app.get('/userdata', async (req,res) => {
     res.json(docs)
 })
 
-app.listen(3001, () => {
-    console.log(`listening On Local 3001`)
+app.listen(port, () => {
+    console.log(`Backend server is listening on port ${port}`)
 })
 
 
